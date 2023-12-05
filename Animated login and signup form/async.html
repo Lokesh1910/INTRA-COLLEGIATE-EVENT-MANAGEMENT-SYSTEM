@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Web Page Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Node.js Web Page Demo</h1>
+
+    <button onclick="callEndpoint('/sync')">Synchronous Programming</button>
+    <button onclick="callEndpoint('/async')">Asynchronous Programming</button>
+    <button onclick="callEndpoint('/callback')">Callback</button>
+    <button onclick="callEndpoint('/promises')">Promises</button>
+    <button onclick="callEndpoint('/async-await')">Async/Await</button>
+
+    <div id="result"></div>
+
+    <script>
+        const resultDiv = document.getElementById('result');
+
+        const callEndpoint = async (endpoint) => {
+            resultDiv.innerHTML = 'Loading...';
+
+            try {
+                const response = await fetch(`http://localhost:3000${endpoint}`);
+                const data = await response.text();
+                resultDiv.innerHTML = data;
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = 'Error occurred. Check the console for details.';
+            }
+        };
+
+        const performOperationAsync = async (operationNumber) => {
+    console.log(`Async/Await: Operation ${operationNumber}`);
+};
+
+const asyncFunction = async () => {
+    console.log("Async/Await: Start");
+    await performOperationAsync(1);
+    await performOperationAsync(2);
+    await performOperationAsync(3);
+    console.log("Async/Await: End");
+};
+
+asyncFunction();
+
+const performOperationPromise = (operationNumber) => {
+    return new Promise((resolve) => {
+        console.log(`Promise: Operation ${operationNumber}`);
+        resolve();
+    });
+};
+
+console.log("Promise: Start");
+performOperationPromise(1)
+    .then(() => performOperationPromise(2))
+    .then(() => performOperationPromise(3))
+    .then(() => console.log("Promise: End"));
+
+    </script>
+</body>
+</html>
