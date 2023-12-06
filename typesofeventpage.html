@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+        *{ 
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; 
+        }
+        *::before, *::after
+        { 
+            box-sizing: inherit; 
+        }
+        body
+        { 
+            color: rgba(0,0,0,.87); 
+            font-size: 1rem; 
+            line-height: 1.5; 
+            font-family: Roboto, sans-serif;
+            background: #26A69A;
+            padding: 2rem 2rem 0; 
+        }
+
+        .wrapper
+        { 
+            display: flex;
+            flex-flow: row;
+            flex-wrap: wrap;
+            justify-content: center; 
+        }
+        
+        a{
+            text-decoration: none;
+            color: white;
+            font-family:Apple Chancery, cursive;
+        }
+
+        a:hover{
+            text-decoration: underline;
+            color: rgb(247, 18, 18);
+            font-family:Apple Chancery, cursive;
+        }
+
+        .wrapper > *
+        { 
+            margin: 45px;
+        }
+
+        .card{
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            width: 400px; 
+            height: 400px;
+            justify-content: space-between;
+            border-radius: 4px;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);  
+            transition: box-shadow 0.56s ease-in-out;       
+        }
+        .card:hover
+        {
+            cursor: pointer;
+            box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
+        }
+
+        .card__title{
+            align-self: flex-end; 
+            padding: 0.5rem;
+            color: rgba(255,255,255,.90); 
+            font-size: 2rem;
+            line-height: 1;
+            font-weight: 600; 
+        }  
+
+        .card__thumbnail
+        {
+            position: relative;
+            overflow: hidden;  
+            display: flex;
+            justify-content: center; /* horizontal center */
+            align-items: center; /* vertical center */
+            width: 100%;
+            height: 100%;
+        }
+        
+        
+        .card__thumbnail > img
+        {
+            height: 100%;
+        }  
+
+        .card__thumbnail > .card__title
+        {
+            position: absolute; 
+            left: 0; 
+            bottom: 0; 
+        }
+
+        .has-bg-img{
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        }
+
+        .bg-img-nature{
+        background-image: url(pro_image/type-2.jpg);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <!-- Using an img TAG -->
+        <div class="card">
+          <!-- The background image -->
+          <figure class="card__thumbnail">
+            <img src="pro_image/type1.jpg">
+            <span class="card__title"><a href="userevent_view.php">View All Technical<br> Events</a></span>
+          </figure>
+        </div>
+      
+        <!-- Setting background-image on CSS -->
+        <div class="card has-bg-img bg-img-nature">
+            <span class="card__title"><a href="userevent_view.php">View All Non-Technical<br> Events</a></span>
+        </div>
+      
+        <!-- Setting background-image on the STYLE attribute -->
+        <div class="card has-bg-img" style="background-image: url(pro_image/type-3.jpg)">
+            <span class="card__title"><a href="userevent_view.php">View All Cultural<br> Events</a></span>
+        </div>
+      
+          <!-- Setting background-image with JS -->
+        <div id="iam-the-card" class="card has-bg-img">
+          <span class="card__title"><a href="userevent_view.php">View All Events</a></span>
+        </div>
+        
+      </div>      
+</body>
+<script>
+    const the_card = document.getElementById('iam-the-card');
+    the_card.style.backgroundImage = "url('pro_image/type-4.jpg')";
+</script>
+</html>
+
+<!-- design by:https://www.codepel.com/demo/cards-with-background-image-css/ -->
